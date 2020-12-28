@@ -24,25 +24,21 @@ class MyApp extends StatelessWidget {
           ),
           textTheme: TextTheme(
             bodyText1: TextStyle(
-                fontFamily: 'Montserrat',
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                 color: Colors.white
             ),
             headline1: TextStyle(
-                fontFamily: 'Montserrat',
                 fontSize: 16,
                 color: Colors.white,
                 fontWeight: FontWeight.bold
             ),
             headline2: TextStyle(
-                fontFamily: 'Montserrat',
                 fontSize: 16,
                 color: Colors.white,
                 fontWeight: FontWeight.normal
             ),
             headline3: TextStyle(
-                fontFamily: 'Montserrat',
                 fontSize: 12,
                 color: Colors.redAccent,
                 fontWeight: FontWeight.w700
