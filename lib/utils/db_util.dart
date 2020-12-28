@@ -16,7 +16,7 @@ class DbUtil {
   static void _createDb(sql.Database db) {
     db.execute(""" CREATE TABLE login (id INTEGER PRIMARY KEY AUTOINCREMENT,
      titulo VARCHAR(50), descricao VARCHAR(50), senha TEXT, username VARCHAR(50),
-     url VARCHAR(255) 
+     url VARCHAR(255)) 
      """);
   }
 

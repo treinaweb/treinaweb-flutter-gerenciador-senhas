@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/models/login.dart';
+import 'package:treinapass/services/login_service.dart';
 
 
 class CadastrarLoginScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class CadastrarLoginScreen extends StatelessWidget {
   final _senhaController = TextEditingController();
   final _usernameController = TextEditingController();
   final _urlController = TextEditingController();
+  LoginService ls = LoginService();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class CadastrarLoginScreen extends StatelessWidget {
                           username: _usernameController.text,
                           url: _urlController.text,
                         );
-                        print(novoLogin.titulo);
+                        ls.addLogin(novoLogin);
                       },
                       child: Text(
                         "Cadastrar",
