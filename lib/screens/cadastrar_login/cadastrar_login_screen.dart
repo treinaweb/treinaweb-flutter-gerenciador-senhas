@@ -65,7 +65,7 @@ class CadastrarLoginScreen extends StatelessWidget {
                           url: _urlController.text,
                         );
                         ls.addLogin(novoLogin);
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (_) => HomeScreen())
                         );
                       },

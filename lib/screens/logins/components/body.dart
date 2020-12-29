@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/models/login.dart';
 import 'package:treinapass/screens/components/card_login.dart';
-import 'package:treinapass/screens/logins/logins_screen.dart';
 import 'package:treinapass/services/login_service.dart';
 
 class Body extends StatefulWidget {
@@ -34,19 +33,8 @@ class _BodyState extends State<Body> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                      'Últimos logins cadastrados',
+                      'Todos os logins',
                       style: Theme.of(context).textTheme.bodyText1
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => LoginsScreen())
-                      );
-                    },
-                    child: Text(
-                      'ver todos',
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
                   ),
                 ],
               )
@@ -58,10 +46,10 @@ class _BodyState extends State<Body> {
                 _logins = snapshot.data;
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: _logins.length > 8 ? 8 : _logins.length,
-                    itemBuilder: (context, index) {
-                      return cardLogin(context, index, _logins[index]);
-                    }
+                      itemCount: _logins.length,
+                      itemBuilder: (context, index) {
+                        return cardLogin(context, index, _logins[index]);
+                      }
                   ),
                 );
               } else {
