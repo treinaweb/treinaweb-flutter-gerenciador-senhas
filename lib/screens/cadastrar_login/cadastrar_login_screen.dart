@@ -64,6 +64,7 @@ class CadastrarLoginScreen extends StatelessWidget {
                           url: _urlController.text,
                         );
                         ls.addLogin(novoLogin);
+                        ls.getAllLogin();
                       },
                       child: Text(
                         "Cadastrar",
