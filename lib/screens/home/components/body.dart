@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:treinapass/models/login.dart';
+import 'package:treinapass/screens/components/card_login.dart';
+import 'package:treinapass/services/login_service.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -6,10 +9,13 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
+  LoginService ls = LoginService();
+  Future<List> _loadLogins;
+  List<Login> _logins;
 
   @override
   void initState() {
+    _loadLogins = _getLogins();
     super.initState();
   }
   @override
@@ -41,10 +47,35 @@ class _BodyState extends State<Body> {
                 ],
               )
           ),
+          FutureBuilder(
+            future: _loadLogins,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                _logins = snapshot.data;
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: _logins.length > 8 ? 8 : _logins.length,
+                    itemBuilder: (context, index) {
+                      return cardLogin(context, index, _logins[index]);
+                    }
+                  ),
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+            },
+          )
 
         ],
       ),
     );
+  }
+
+  Future<List> _getLogins() async {
+    return await ls.getAllLogin();
   }
 
 }

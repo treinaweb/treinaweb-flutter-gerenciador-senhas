@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/models/login.dart';
+import 'package:treinapass/screens/home/home_screen.dart';
 import 'package:treinapass/services/login_service.dart';
 
 
@@ -64,7 +65,9 @@ class CadastrarLoginScreen extends StatelessWidget {
                           url: _urlController.text,
                         );
                         ls.addLogin(novoLogin);
-                        ls.getAllLogin();
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => HomeScreen())
+                        );
                       },
                       child: Text(
                         "Cadastrar",
