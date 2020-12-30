@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:treinapass/models/usuario.dart';
+import 'package:treinapass/services/usuario_service.dart';
 
 class CadastrarUsuarioScreen extends StatelessWidget {
 
   final _nomeController = TextEditingController();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
+  UsuarioService us = UsuarioService();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +124,14 @@ class CadastrarUsuarioScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Usuario novoUsuario = Usuario(
+                        nome: _nomeController.text,
+                        email: _emailController.text,
+                        senha: _senhaController.text
+                      );
+                      us.addUsuario(novoUsuario);
+                    },
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
                       height: 45,
