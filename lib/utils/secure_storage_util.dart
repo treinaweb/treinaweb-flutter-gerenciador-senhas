@@ -7,4 +7,8 @@ class SecureStorageUtil {
   Future insertData(String key, String value) async {
     _storage.write(key: key, value: value);
   }
+
+  Future getData(String key) async {
+    return await _storage.read(key: key);
+  }
 }
