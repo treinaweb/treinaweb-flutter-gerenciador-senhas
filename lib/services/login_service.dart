@@ -27,11 +27,21 @@ class LoginService {
     return _loginList;
   }
 
-  Future<Login> getLogin(int id) async {
+  Future<Login> getLogin(int id, String senhaUsuario) async {
     String whereString = "id = ?";
     List<dynamic> whereArgument = [id];
     final dataList = await DbUtil.getDataId('login', whereString, whereArgument);
-    return Login.fromMap(dataList.first);
+    String senhaDescriptografada = await en.decryptString(dataList.first["senha"],
+        senhaUsuario);
+
+    return Login(
+      id: dataList.first["id"],
+      titulo: dataList.first["titulo"],
+      descricao: dataList.first["descricao"],
+      username: dataList.first["username"],
+      url: dataList.first["url"],
+      senha: senhaDescriptografada
+    );
   }
 
 

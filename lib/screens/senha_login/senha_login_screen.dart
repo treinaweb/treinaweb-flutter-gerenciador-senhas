@@ -105,9 +105,10 @@ class _SenhaLoginScreenState extends State<SenhaLoginScreen> {
                         child: InkWell(
                           onTap: () {
                             if (_senha == _senhaController.text) {
-                              Navigator.of(context).push(
+                              Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(builder: (_) =>
-                                      LoginScreen(idLogin: widget.idLogin,))
+                                      LoginScreen(idLogin: widget.idLogin,
+                                        senhaUsuario: _senha,))
                               );
                             } else {
                               Navigator.of(context).pushReplacement(

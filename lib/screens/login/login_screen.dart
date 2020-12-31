@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:treinapass/models/login.dart';
 import 'package:treinapass/screens/home/home_screen.dart';
 import 'package:treinapass/services/login_service.dart';
@@ -7,8 +8,9 @@ import 'package:treinapass/utils/secure_storage_util.dart';
 
 class LoginScreen extends StatefulWidget {
   int idLogin;
+  String senhaUsuario;
 
-  LoginScreen({this.idLogin});
+  LoginScreen({this.idLogin, this.senhaUsuario});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -63,11 +65,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(labelText: "Descrição"),
                       ),
-                      TextFormField(
-                        enabled: false,
-                        initialValue: _login.senha,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(labelText: "Senha"),
+                      InkWell(
+                        onTap: () {
+                          Clipboard.setData(ClipboardData(text: _login.senha));
+                          alertDialog(context);
+                        },
+                        child: TextFormField(
+                          enabled: false,
+                          initialValue: _login.senha,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(labelText: "Senha"),
+                        ),
                       ),
                       TextFormField(
                         enabled: false,
@@ -91,6 +99,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<Login> _getLogin(int id) async {
-    return await ls.getLogin(id);
+    return await ls.getLogin(id, widget.senhaUsuario);
+  }
+
+  alertDialog(BuildContext context) {
+    Widget ok = FlatButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: Text("OK"),
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Senha copiada com sucesso"),
+          actions: [
+            ok,
+          ],
+        );
+      }
+    );
   }
 }
