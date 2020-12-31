@@ -29,4 +29,11 @@ class DbUtil {
     final db = await DbUtil.database();
     return db.query(table);
   }
+
+  static Future<List<Map<String, dynamic>>> getDataId(String table,
+      String whereString, List<dynamic> whereArguments) async {
+    final db = await DbUtil.database();
+    return db.query(table, where: whereString,
+    whereArgs: whereArguments);
+  }
 }

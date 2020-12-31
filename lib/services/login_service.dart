@@ -27,5 +27,12 @@ class LoginService {
     return _loginList;
   }
 
+  Future<Login> getLogin(int id) async {
+    String whereString = "id = ?";
+    List<dynamic> whereArgument = [id];
+    final dataList = await DbUtil.getDataId('login', whereString, whereArgument);
+    return Login.fromMap(dataList.first);
+  }
+
 
 }

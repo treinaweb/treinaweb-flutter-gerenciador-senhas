@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/models/login.dart';
+import 'package:treinapass/screens/login/login_screen.dart';
+import 'package:treinapass/screens/logins/logins_screen.dart';
 
 Widget cardLogin(BuildContext context, int index, Login login) {
   return Container(
@@ -17,35 +19,42 @@ Widget cardLogin(BuildContext context, int index, Login login) {
       ],
       color: Colors.black12
     ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  login.titulo,
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-                Text(
-                  login.username,
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                Text(
-                  login.senha,
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-              ],
-            )
-          ],
-        )
-      ],
+    child: InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => LoginScreen(idLogin: login.id,))
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    login.titulo,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  Text(
+                    login.username,
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  Text(
+                    login.senha,
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
     ),
   );
 }
