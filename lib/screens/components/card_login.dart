@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treinapass/models/login.dart';
 import 'package:treinapass/screens/login/login_screen.dart';
 import 'package:treinapass/screens/logins/logins_screen.dart';
+import 'package:treinapass/screens/senha_login/senha_login_screen.dart';
 
 Widget cardLogin(BuildContext context, int index, Login login) {
   return Container(
@@ -22,7 +23,7 @@ Widget cardLogin(BuildContext context, int index, Login login) {
     child: InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => LoginScreen(idLogin: login.id,))
+          MaterialPageRoute(builder: (_) => SenhaLoginScreen(idLogin: login.id,))
         );
       },
       child: Row(
