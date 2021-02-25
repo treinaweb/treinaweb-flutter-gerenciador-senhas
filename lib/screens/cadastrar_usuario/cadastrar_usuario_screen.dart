@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/models/usuario.dart';
+import 'package:treinapass/screens/home/home_screen.dart';
 import 'package:treinapass/services/usuario_service.dart';
 
 class CadastrarUsuarioScreen extends StatelessWidget {
@@ -131,6 +132,9 @@ class CadastrarUsuarioScreen extends StatelessWidget {
                         senha: _senhaController.text
                       );
                       us.addUsuario(novoUsuario);
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => HomeScreen())
+                      );
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treinapass/screens/cadastrar_usuario/cadastrar_usuario_screen.dart';
 import 'package:treinapass/screens/home/home_screen.dart';
+import 'package:treinapass/screens/pagina_inicial/pagina_inicial_screen.dart';
 
 
 void main()=>runApp(MyApp());
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             ),
           )
       ),
-      home: CadastrarUsuarioScreen(),
+      home: PaginaInicialScreen(),
     );
   }
 }
